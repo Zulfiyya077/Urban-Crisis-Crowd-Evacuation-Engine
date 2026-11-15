@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title data-i18n="title.citizen">Təxliyə · Bakı</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="/css/citizen.css" />
+</head>
+<body>
+  <a class="skip" href="#sos" data-i18n="a11y.skipSos">SOS siqnalına keç</a>
+  <header class="top">
+    <div class="brand">
+      <img class="logo" src="/logo.svg" alt="" width="36" height="36" />
+      <div>
+        <h1 data-i18n="citizen.title">Təxliyə</h1>
+      </div>
+    </div>
+    <div class="lang" role="group" data-i18n-aria="lang.group" aria-label="Dil">
+      <button type="button" data-set-lang="az" data-i18n-aria="lang.az" aria-label="Azərbaycan dili" aria-pressed="true">
+        <span class="flag" data-flag="az"></span><span>AZ</span>
+      </button>
+      <button type="button" data-set-lang="en" data-i18n-aria="lang.en" aria-label="English" aria-pressed="false">
+        <span class="flag" data-flag="en"></span><span>EN</span>
+      </button>
+    </div>
+    <a class="ghost" href="/operator" data-i18n="nav.operator">Dispetçer paneli</a>
+  </header>
+  <p id="net" class="notice" role="status" hidden></p>
+  <main class="layout" data-tab="sos">
+    <section class="panel" aria-label="Təxliyə qərarı">
+      <form id="where" class="block">
+        <label for="district" data-i18n="citizen.district">Yer</label>
+        <div class="row">
+          <select id="district" name="district"></select>
+          <button type="button" id="locate" data-i18n="citizen.locate">Yerimi tap</button>
+        </div>
+        <p id="origin" class="muted" data-i18n="citizen.origin">Rayon mərkəzi. Xəritəyə klikləsəniz, koordinat götürülər.</p>
+      </form>
+      <section id="sos" class="block sos-dock" tabindex="-1" aria-label="SOS">
+        <h2 data-i18n="citizen.sos">Təhlükəni bildirin</h2>
+        <div class="sos-grid">
+          <button type="button" data-sos="fire"><span class="hazard fire" data-hazard="fire" aria-hidden="true"></span><span data-i18n="type.fire">Yanğın</span></button>
+          <button type="button" data-sos="collapse"><span class="hazard collapse" data-hazard="collapse" aria-hidden="true"></span><span data-i18n="type.collapse">Zəlzələ</span></button>
+          <button type="button" data-sos="flood"><span class="hazard flood" data-hazard="flood" aria-hidden="true"></span><span data-i18n="type.flood">Daşqın</span></button>
+          <button type="button" data-sos="medical"><span class="hazard medical" data-hazard="medical" aria-hidden="true"></span><span data-i18n="type.medical">Tibbi yardım</span></button>
+        </div>
+        <label class="role" for="mobility">
+          <input type="checkbox" id="mobility" aria-describedby="role-hint" />
+          <span data-i18n="role.title">Hərəkət məhdudiyyəti</span>
+        </label>
+        <p id="role-hint" class="muted" data-i18n="role.hint">Prioritet #1. Yalnız panduslu və maneəsiz yol.</p>
+        <p id="status" class="status" role="status">Status göndərilməyib</p>
+        <p id="next" class="muted" hidden></p>
+        <button type="button" id="safe" class="safe" data-i18n="citizen.safe">Təhlükəsizdəyəm</button>
+        <p id="sos-alert" class="sr-only" role="alert" aria-live="assertive" aria-atomic="true"></p>
+      </section>
+      <div id="decision" class="block" aria-live="polite">Məlumat yüklənir…</div>
+      <details id="reports" hidden>
+        <summary data-i18n="reports.title">Mənim siqnallarım</summary>
+        <ul id="report-list"></ul>
+      </details>
+      <p id="policy" class="footnote"></p>
+    </section>
+    <section class="map-wrap" aria-label="Xəritə">
+      <div id="map"></div>
+      <p class="map-note" data-i18n="citizen.mapNote">Qırmızı xətt bağlı yoldur. Narıncı marşrut avtomatik alternativdir.</p>
+    </section>
+  </main>
+  <nav class="tabs" id="tabs" aria-label="Sections">
+    <button type="button" data-tab="sos" class="is-on" data-i18n="tab.feed">SOS</button>
+    <button type="button" data-tab="map" data-i18n="tab.map">Xəritə</button>
+    <button type="button" data-tab="route" data-i18n="tab.route">Yol</button>
+  </nav>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="/js/citizen.js"></script>
+</body>
+</html>
