@@ -1,7 +1,7 @@
 import {
   esc, percentLabel, tone, formatDuration, formatDistance, ago, signalRef, request,
 } from './format.js';
-import { t, bindLanguage } from './i18n.js';
+import { t, bindLanguage } from './i18n.js?v=20261116b';
 import { mountMarks } from './icons.js';
 import { drawCoverage } from './coverage.js';
 
@@ -386,7 +386,7 @@ function setStatus(kind, extra = {}) {
   paintStatus();
 }
 
-const SPOKEN = new Set(['sent', 'duplicate', 'priority', 'safe', 'error', 'locating', 'noGeo', 'geoFail']);
+const SPOKEN = new Set(['sent', 'duplicate', 'priority', 'error', 'locating', 'noGeo', 'geoFail']);
 
 function paintStatus() {
   const state = statusState;
@@ -398,7 +398,9 @@ function paintStatus() {
   else if (state.kind === 'sent' || state.kind === 'duplicate' || state.kind === 'priority') {
     statusLine.textContent = t('status.' + state.kind, { type: t('type.' + state.type), zone: state.zone, id: state.id });
   } else statusLine.textContent = t('status.' + state.kind);
-  if (SPOKEN.has(state.kind)) speak(statusLine.textContent);
+  statusLine.hidden = statusLine.textContent === '';
+  if (state.kind === 'safe') speak(t('citizen.safeDone'));
+  else if (statusLine.textContent && SPOKEN.has(state.kind)) speak(statusLine.textContent);
   paintSafeButton();
 }
 

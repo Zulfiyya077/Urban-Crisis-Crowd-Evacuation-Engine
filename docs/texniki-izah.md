@@ -46,7 +46,7 @@ Cavab həm tövsiyəni, həm növbəti variantları, həm də kənarda qalan mə
 
 Hərəkət məhdudiyyəti rolu vətəndaş səhifəsində seçilir. Bu rolla göndərilən SOS avtomatik `KLİNİK PRİORİTET` və prioritet `1` statusu alır. Planlayıcı həmin sorğuda pilləkənli məntəqələri və əlil arabası ilə tibbi nəqliyyatın keçmədiyi seqmentləri kənara qoyur; qalan marşrut panduslu və ya maneəsiz girişə aparır. Rayonda belə giriş yoxdursa, rayon mərkəzində panduslu müvəqqəti sığınacaq açılır. Yasamal bu haldadır: insan Tofiq Bəhramov və ya Nərimanovadək getmir.
 
-SOS növləri: `fire`, `collapse`, `flood`, `medical`. Eyni sessiya eyni növü 30 saniyə içində təkrarlasa, ikinci yazı yaradılmır. “Təhlükəsizdəyəm” həmin sessiyanın aktiv siqnallarını `safe` edir. Təhlükəsiz və ya check-in yazıları 4 SOS hesabına daxil deyil.
+SOS növləri: `fire`, `collapse`, `flood`, `medical`. Eyni sessiya eyni növü 30 saniyə içində təkrarlasa, ikinci yazı yaradılmır. «Təhlükədəyəm» həmin sessiyanın aktiv siqnallarını `safe` edir və düymə «Təhlükəsizəm» olur. Təhlükəsiz və ya check-in yazıları 4 SOS hesabına daxil deyil. Bu düymə SOS selinin limitinə düşmür.
 
 ## Dispetçer və böhran qaydası
 
@@ -62,7 +62,7 @@ Hər dəyişiklikdən sonra `crisisRules` siyahısı işləyir. Yeni qayda bu ma
 - Eyni 4 siqnal bir rayonun içində deyilsə, amma hansısa nöqtədən 500 metr radiusa düşürsə, radius həyəcanı yaranır.
 - Toplanış məntəqəsinin göstərilən doluluğu 95%-i **keçəndə**. 95.0 həyəcan açmır, 96 açır.
 
-Zona həyəcanı siqnallar sonradan “Təhlükəsizdəyəm” olsa da, operator təsdiqləyənə qədər açıq qalır. Eyni sübut dəsti təsdiqdən sonra ikinci dəfə həyəcan açmır. Pəncərədə ən azı 4 yeni siqnal gələrsə, yeni həyəcan açıla bilər.
+Zona həyəcanı vətəndaş «Təhlükədəyəm» basandan sonra da operator təsdiqləyənə qədər açıq qalır. Eyni sübut dəsti təsdiqdən sonra ikinci dəfə həyəcan açmır. Pəncərədə ən azı 4 yeni siqnal gələrsə, yeni həyəcan açıla bilər.
 
 Doluluq 95 və ya altına düşəndə açıq doluluq həyəcanı səngiyir və qayda yenidən silahlanır. Təsdiqdən sonra doluluq yüksək qalsa, eyni məntəqə üçün ikinci həyəcan açılmır; doluluq əvvəl 95-ə düşüb sonra yenidən keçəndə açılır.
 
@@ -112,7 +112,7 @@ Növbəti tapşırıqlar üçün dəyişiklik yeri əvvəlcədən ayrılıb:
 - Yol şəbəkəsi Bakının əsas istiqamətlərini təmsil edən kiçik qrafdır, tam küçə reyestrı deyil.
 - Məntəqə tutumları və ilkin doluluq ssenari üçündür.
 - Rayon sərhədi ən yaxın mərkəzdir.
-- Operator API-si autentifikasiyasızdır. Xaricə açılmazdan əvvəl sessiya, rol və sürət limiti lazımdır.
+- Briqada, yol, doluluq və ssenari sorğuları dispetçer girişi tələb edir. Vəziyyəti oxumaq və canlı yayım açıq qalır. `dispatcher` / `baki-dispetcer` yalnız lokal nümunədir.
 - Vəziyyət proses yaddaşındadır.
 - Xəritədəki marşrut xətti seçilmiş qraf nöqtələrindən keçən küçə trayektoriyasıdır. Bağlı seqment qərarı əvvəlcə qrafda verilir, ona görə xətt həmin bağlı seqmentdən keçmir. Küçə xidməti 503 qaytaranda, 5 saniyədən çox susanda və ya şəbəkə kəsiləndə sorğu istisna atmadan kəsilir. Circuit breaker açılır və məsafə son keşdən, yoxdursa statik koordinat matrisindən hesablanır. Vətəndaş «Oflayn/Ehtiyat marşrut rejimində işləyir» bildirişini görür.
 - Prototip real xilasetmə qərarı üçün istifadə olunmamalıdır.

@@ -18,7 +18,7 @@ Tapşırıq bəzi hədləri dəqiq yazır, bəzilərini isə sərbəst buraxır.
 
 - “90% dolduqda” alternativ marşrut üçün `>= 90` götürülüb.
 - “95%-i keçərsə” operator həyəcanı üçün göstərilən faiz `> 95` götürülüb. 95.0 həyəcan açmır.
-- “4 fərqli SOS” dörd ayrı siqnal yazısıdır. Eyni cihaz fərqli növlər göndərə bilər. “Təhlükəsizdəyəm” və check-in sayılmır.
+- “4 fərqli SOS” dörd ayrı siqnal yazısıdır. Eyni cihaz fərqli növlər göndərə bilər. Təhlükəsiz status və check-in sayılmır.
 - 500 metr şərti rayon şərtini təkrarlamır: siqnallar artıq bir rayon həyəcanına düşübsə, eyni dəstə üçün ikinci həyəcan açılmır. Radius həyəcanı rayon sərhədini keçən topa üçündür.
 - Həyəcan operator təsdiqləyənə qədər açıq qalır. Eyni sübutlarla təkrar həyəcan yaradılmır.
 - “Qərarı icra et” həm briqada göndərir, həm də yeni məntəqə açır. Əvvəl hazır briqada seçilir; heç biri hazır deyilsə, ehtiyat briqada yaradılır.
@@ -28,7 +28,7 @@ Bu oxunuşlar `test/engine.test.js` içində yoxlanılır. Test keçməyibsə, q
 
 ## Yoxlama
 
-`npm test` böhran hədlərini, bağlı yolun marşrutu dəyişməsini, briqada və müvəqqəti məntəqənin yaradılmasını və HTTP sərhədini yoxlayır. Veb səhifələr ayrıca brauzerdə açılıb: vətəndaşın alternativ marşrutu, SOS və “Təhlükəsizdəyəm”, dispetçerdə dörd SOS-dan sonra qırmızı həyəcan, qərarın icrası və 96% doluluq həyəcanı.
+`npm test` 25 yoxlamadan keçir: böhran hədləri, bağlı yol, briqada və müvəqqəti məntəqə, dispetçer rolu, SOS seli və ehtiyat marşrut. Veb səhifələr brauzerdə açılıb: alternativ marşrut, SOS, «Təhlükədəyəm», dörd SOS-dan sonra qırmızı həyəcan, qərarın icrası və 96% doluluq.
 
 Süni intellekt bu yoxlamaları özü yazıb və işlədib. Bu, müstəqil ekspert rəyi deyil.
 
@@ -36,4 +36,4 @@ Süni intellekt bu yoxlamaları özü yazıb və işlədib. Bu, müstəqil ekspe
 
 Model yanlış koordinat, natamam yol qrafı və ya Azərbaycan dilində yöndəmsiz ifadə yaza bilər. Testlər rəqəm qaydalarını saxlayır, amma nümunə məlumatını rəsmi mənbəyə çevirə bilməz.
 
-Sistem fövqəladə hal əməliyyatı üçün hazır məhsul deyil. Real dispetçer istifadəsindən əvvəl insan rəyi, rəsmi coğrafi məlumat, autentifikasiya, davamlı yaddaş və məsul qurumun qəbulu lazımdır. Süni intellektin çıxışı bu qəbulu əvəz etmir.
+Sistem fövqəladə hal əməliyyatı üçün hazır məhsul deyil. Dəyişdirən dispetçer sorğularında lokal giriş var, amma bu, dövlət sistemi autentifikasiyası deyil. Real istifadə üçün rəsmi coğrafi məlumat, davamlı yaddaş və məsul qurumun qəbulu lazımdır. Süni intellektin çıxışı bu qəbulu əvəz etmir.
